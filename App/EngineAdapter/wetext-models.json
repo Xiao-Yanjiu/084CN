@@ -1,0 +1,12 @@
+{
+  "version": "0.1.0",
+  "url": "https://files.pythonhosted.org/packages/d4/a6/d5856069473e04968cd04fdd4726a23e78fd925ced0281294a28c5a27913/wetext-0.1.0-py3-none-any.whl",
+  "size": 1513305,
+  "sha256": "cfc595f85d9b0218df6746a9e6bee9240b6e09ee6d803a937ef90cbc03936b3e",
+  "files": {
+    "zh/tn/tagger.fst": "63f3abeafe64fc3e9232099ab8ef6efd44c5198319193854af3ac2716d7c27a7",
+    "zh/tn/verbalizer.fst": "9fcadad76cafddb2e96b92d892d18249f0ba5fbe60e4d4fc51f466cb6bc7ade9",
+    "en/tn/tagger.fst": "bb804f88030153999f154f01950c18dbfd64de2c4cfc5035e21371d4eb4ead8a",
+    "en/tn/verbalizer.fst": "33ad65460a3e8f7fe313994ff0204a218c0fcb5dec9c09b24aeeaa30ef21d67b"
+  }
+}
