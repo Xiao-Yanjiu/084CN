@@ -1,0 +1,8 @@
+Third-party components retain their respective licenses.
+IndexTTS2: https://github.com/index-tts/index-tts (Bilibili Model Use License). Modified offline loading and request service, mmap/low-peak GPT loading.
+Voice references (downloaded on demand): https://github.com/s1dashu/director (MIT).
+Frida: https://github.com/frida/frida (wxWindows Library Licence / LGPL exception).
+UnityPy: https://github.com/K0lb3/UnityPy (MIT).
+vgmstream: https://github.com/vgmstream/vgmstream (ISC/BSD and bundled third-party licenses).
+FFmpeg: https://ffmpeg.org (see ffmpeg-build.txt and bundled configuration for the exact build).
+Python/PyTorch and downloaded dependencies retain their own licenses.

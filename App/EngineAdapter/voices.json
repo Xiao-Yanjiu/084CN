@@ -1,0 +1,12 @@
+[
+  {
+    "file": "dante.wav",
+    "url": "https://raw.githubusercontent.com/s1dashu/director/main/voices/沉静青年男声-v1.wav",
+    "sha256": "f81888a34101cba695de51636024e23878aabf4d12015d39e2c8e0f1b329d3d4"
+  },
+  {
+    "file": "narrator.wav",
+    "url": "https://raw.githubusercontent.com/s1dashu/director/main/voices/磁性沧桑中年男声-v1.wav",
+    "sha256": "defb1df2ed4b89df9fd509e8d69aac75cd9c448f441f849beae1d2e9ced4143c"
+  }
+]

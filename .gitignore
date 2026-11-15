@@ -1,0 +1,13 @@
+084CN.exe
+App/Config/*
+!App/Config/player/
+App/Config/player/*
+!App/Config/player/il2cpp-api-map.json
+ChineseAudio/*
+!ChineseAudio/README.txt
+Engines/*
+!Engines/README.txt
+__pycache__/
+*.pyc
+*.download
+*.parts/
