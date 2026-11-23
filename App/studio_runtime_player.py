@@ -30,8 +30,9 @@ class RuntimePlayer:
    import studio_project
    if not valid(DATA,studio_project.game()):
     self.notify('正在更新游戏语音事件表')
-    try:result=subprocess.run([sys.executable,str(ROOT/'tools/player/export_events.py')],cwd=str(ROOT),capture_output=True,timeout=45,creationflags=0x08000000)
-    except subprocess.TimeoutExpired:raise RuntimeError('游戏事件表更新超时，已停止导出，可重新连接。')
+    try:result=subprocess.run([sys.executable,'-I','-u',str(ROOT/'tools/player/export_events.py')],cwd=str(ROOT),stdin=subprocess.DEVNULL,capture_output=True,timeout=45,creationflags=0x08000000)
+    except subprocess.TimeoutExpired as exc:
+     trace=(exc.stdout or b'').decode('utf8',errors='replace');(DATA/'export-timeout.log').write_text(trace,encoding='utf8');raise RuntimeError('游戏事件表导出超时，阶段日志：'+str(DATA/'export-timeout.log'))
     if result.returncode:raise RuntimeError('读取游戏事件表失败：'+result.stderr.decode(errors='replace')[-500:])
     if not valid(DATA,studio_project.game()):raise RuntimeError('游戏事件表校验失败，请重新连接。')
    mapping,report=build_mapping();(DATA/'runtime-map-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf8')
@@ -43,7 +44,8 @@ class RuntimePlayer:
     try:
      source+='\n'+story_bootstrap();story_available=True;story_rows,story_report=build_story_mapping()
      (DATA/'story-map-report.json').write_text(json.dumps(story_report,ensure_ascii=False,indent=2),encoding='utf8')
-    except Exception as e:self.notify('但丁/旁白暂未接入：'+str(e))
+    except Exception as e:
+     message='但丁/旁白暂未接入：'+str(e);self.notify(message);(DATA/'story-connection-error.log').write_text(message,encoding='utf8')
     script=session.create_script(source);script.on('message',self.message);script.load();script.exports_sync.configure(mapping)
     for _ in range(80):
      state=script.exports_sync.status()
@@ -51,7 +53,9 @@ class RuntimePlayer:
      time.sleep(.1)
     if story_available:
      try:
-      script.exports_sync.configurestory(story_rows);story_count=len(story_rows)
+      story_state=script.exports_sync.configurestory(story_rows)
+      if not story_state.get('ready'):raise RuntimeError('剧情接口未就绪')
+      story_count=len(story_rows)
      except Exception as e:self.notify('但丁/旁白接入失败：'+str(e))
     if not state['ready']:raise RuntimeError('未找到兼容的 FMOD 接口，已取消接入；原声保持不变。')
    except Exception:
